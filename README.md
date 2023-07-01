@@ -71,4 +71,4 @@ Update order status (e.g., processing, shipped, delivered) and provide shipment 
 Communicate with buyers through the website's messaging system, ensuring a smooth transaction process.
 Contributing
 We welcome contributions from the community to enhance and improve the Agriculture E-Commerce Website.
-If you have any suggestions, bug reports, or feature requests, please submit them to our GitHub repository here.
+If you have any suggestions, bug reports, or feature requests, please submit them to our GitHub repository https://github.com/Hassan-oladipupo/AgroMart
