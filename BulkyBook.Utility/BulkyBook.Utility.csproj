@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\lawn_leaf.jpg" />
+    <None Remove="Images\Products\086a647a-5afc-44fb-929e-c8d363198f31.jpg" />
+    <None Remove="Images\Products\2dc2bffc-1b99-4dec-8367-4a99f123ceb5.jpg" />
+    <None Remove="Images\Products\7725c672-4012-4cfa-9262-ccfec61f7a3f.jpg" />
+    <None Remove="Images\Products\a9d24063-10a2-497f-94b4-80efe70a1ed9.jpg" />
+    <None Remove="Images\Products\df0f4522-b534-467e-a18a-6a9b72a6deb9.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\lawn_leaf.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Images\Products\086a647a-5afc-44fb-929e-c8d363198f31.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Images\Products\2dc2bffc-1b99-4dec-8367-4a99f123ceb5.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Images\Products\7725c672-4012-4cfa-9262-ccfec61f7a3f.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Images\Products\a9d24063-10a2-497f-94b4-80efe70a1ed9.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Images\Products\df0f4522-b534-467e-a18a-6a9b72a6deb9.jpg">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Core" Version="5.1.1" />
+    <PackageReference Include="MailKit" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.10" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0-rc.1.22426.10" />
+    <PackageReference Include="MimeKit" Version="4.0.0" />
+    <PackageReference Include="SendGrid" Version="9.28.1" />
+  </ItemGroup>
+
+</Project>

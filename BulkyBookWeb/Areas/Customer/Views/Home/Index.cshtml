@@ -1,0 +1,60 @@
+﻿@model IEnumerable<BulkyBook.Model.Product>
+
+
+<section class="home" id="home">
+    <div class="home_content">
+        <h2>accelerating agribusiness & markets</h2>
+        <h4>
+            we faciltate market linkages across different levels of the value chain to enhance agriculture trade.
+        </h4>
+        <a href="#" class="btn home_btn">learn more</a>
+    </div>
+</section>
+
+<div style="display: flex;" class="row pb-4">
+    @foreach (var product in Model)
+    {
+
+        <section class="product col-lg-3 col-md-6 ">
+            <div class="box_container   row pb-3">
+                <div class="box">
+                    <div class="col-12 p-0">
+                        <img src="@product.ImageUrl" class="card-img-top rounded" />
+                    </div>
+                    <div class="image_content">
+                        <div class="image_product">
+                            <h3 class="card-title h5 ">@product.Title</h3>
+                            <p class="card-title "> Condition: <b>@product.Author</b></p>
+                        </div>
+                        <div class="price">
+                            <p>ListPrice: <strike><b>@product.ListPrice.ToString("0.00")</b></strike> </p>
+                        </div>
+
+                        <p>As low as : <b>@product.Price100.ToString("0.00")</b> </p>
+
+                        <div class="starts">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span class="star_span"></span>
+                            <div class="image_button">
+                                <a asp-action="Details" style="text-decoration: none" class="image_carts" asp-route-productId="@product.Id">
+                                     More Details
+                                </a> &nbsp;
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index"> <i class="fa fa-cart-plus image_cart"></i></a>
+                              @*  <i class="fa fa-cart-plus image_cart"></i>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </section>
+
+    }
+</div>
+
+

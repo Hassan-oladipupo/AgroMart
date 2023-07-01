@@ -1,0 +1,247 @@
+﻿@using Microsoft.AspNetCore.Http
+@using BulkyBook.Utility
+@inject IHttpContextAccessor HttpContextAccessor
+
+
+
+
+
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>@ViewData["Title"] - AGROMART</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="~/css/StyleSheet.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  @*  <link rel="stylesheet" href="~/BulkyBookWeb.styles.css" asp-append-version="true" />*@
+    <link rel="stylesheet" href="~/css/BootStrap.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+    
+    <link rel="stylesheet" href="//cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+
+</head>
+<body>
+
+    <header>
+        <div class="low_header">
+                <a href="#" class="logo">
+                    <img src="~/Images/logo.png" alt="" srcset="">
+                </a>
+
+          
+            <nav class="navbar navbar-expand-lg">
+
+
+
+                <div class="container-fluid">
+                  @*<a class="navbar-brand" href="#">MobileGadget</a>*@
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor02">
+
+                <ul class="navbar-nav me-auto">
+                
+                    <li class="nav-item">
+                                <a class="active" style="text-decoration: none" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                    </li>
+
+                        <li class="nav-item">
+                                <a asp-area="Admin" style="text-decoration: none" asp-controller="Order" asp-action="Index">
+                            Manage Order
+                        </a>
+                               
+                    </li>
+
+                            <li>
+                                <form asp-action="Index" method="get" class="example">
+
+                                    <div class="input-group md-form form-control-sm form-2 pl-0">
+
+                                        <label for="SearchString"></label>
+                                        <input style="width:65%; height:20%;" class="form-control my-0 py-1 red-border" type="search" placeholder="Search products" name="SearchString"
+                                               aria-describedby="basic-addon1" value="@ViewData["ProductFilter"]" />
+                                        <button style="width:38px; height:20px;" type="submit"><i class="fa fa-search search"></i></button>
+                                        <input style="width:80px; Background-color:#006400; height:40px;" type="submit" value="Search" class="btn btn-primary" />
+
+                                      @*  <a  asp-action="Index" class="btn btn-primary mx-4"> <i class="bi bi-bag-fill my-link"></i> &nbsp; All product</a>*@
+
+                                    </div>
+
+
+
+                                </form>
+                            </li>
+                          
+                    
+                    @*Makiing the drop down visilble only to Admin*@
+                    @if (User.IsInRole(SD.Role_Admin))
+                    {
+                        <li class="nav-item">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Content Management</a>
+                                    <div class="dropdown-menu dropdown-content">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">ProductType</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                                <div class="dropdown-divider"></div>
+
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Suppliers</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Create User</a>
+
+                            </div>
+                        </li>
+                    }
+                     
+
+                     
+
+
+
+
+
+
+                </ul>
+        </div>
+                </div>
+                    
+            </nav>
+
+
+     
+
+            <div style="display:flex;" class="nav_icons">
+               @* <div class="" id="menu_bar"></div>*@
+                <a id="cart_btn" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+                    @await Component.InvokeAsync("ShoppingCart")
+
+                </a>
+            
+        
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+
+            <li class="nav-item">
+                <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button style="Background-color:#006400; width:100px; height:60px;" id="logout" type="submit" class="nav-link btn text-light-200">Logout</button>
+                </form>
+            </li>
+        }
+        else
+        {
+                    <button style="width:100px; height:60px;" class="text-light-200 nav_icons" id="accountBtn">
+                        <a   id="accountBtn" class="fas fa-user"><span>Accounts</span> </a>
+            </button>
+            <div id="loginForm" class="hidden">
+                <a id="login" asp-area="Identity" asp-page="/Account/Login" class="fas fa-sign-in"><span>Login </span></a>
+
+                <a id="register" asp-area="Identity" asp-page="/Account/Register" class="fas fa-sign-up"><span>Sign-Up</span> </a>
+            </div>
+        }
+
+    
+
+        </div>
+        </div>
+       
+
+
+
+
+
+
+    </header>
+    
+    <div class="">
+        <main role="main" class="pb-3">
+            @RenderBody()
+           
+        </main>
+    </div>
+    <footer class="footerss text-muted bg-light ">
+        <div class="add">
+            &copy; 2023 - Ogun Hack Training 3.0-- 
+            <a asp-area="" asp-controller="Home" asp-action="Privacy">About us</a>
+               
+           
+        </div>
+
+ </footer>
+
+
+
+       
+                  
+    
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.tiny.cloud/1/c3ehtyco99qrjor9devs437xk0cwer7em6p01l28ym19uufx/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="~/js/Script.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+   
+</html>
+
+
+  
