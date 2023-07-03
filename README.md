@@ -31,7 +31,7 @@ Cart functionality for adding and managing selected products
 Order management for buyers and sellers
 Product reviews and ratings
 Responsive and intuitive user interface
-Getting Started
+Getting Started.
 To access and use the Agriculture E-Commerce Website, follow the instructions below.
 
 Installation
