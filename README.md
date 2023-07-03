@@ -1,5 +1,6 @@
 Welcome to the AgroMart E-Commerce Website! This platform serves as an online marketplace for agricultural products, connecting farmers and growers
-with buyers looking for high-quality agricultural goods. This README file aims to provide you with essential information about the website, 
+with buyers looking for high-quality agricultural goods. 
+This README file aims to provide you with essential information about the website, 
 its features, and how to effectively navigate and utilize its capabilities.
 
 1. Table of Contents
